@@ -6,21 +6,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pychromatic-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pychromatic-{{ version }}.tar.gz
   sha256: 77ab018f82aa0c88e25c4a23174cb35764416997cbe98b9d16eebdbe16cd9c86
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 2
 
 requirements:
   host:
-    - python !=3.0,!=3.1,!=3.2,!=3.3,!=3.4
+    - python {{ python_min }}
     - pytest-runner
     - pip
+    - setuptools
   run:
-    - python !=3.0,!=3.1,!=3.2,!=3.3,!=3.4
+    - python >={{ python_min }}
     - matplotlib-base
     - rich
 
@@ -31,6 +32,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/srmnitc/pychromatic
