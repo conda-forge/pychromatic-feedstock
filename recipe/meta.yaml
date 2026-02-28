@@ -1,5 +1,5 @@
 {% set name = "pychromatic" %}
-{% set version = "0.6.0" %}
+{% set version = "0.6.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pychromatic-{{ version }}.tar.gz
-  sha256: 8a2cfaa8485bdc0051eaa97a8d91050bd110bb438616f6ffd667c490c771d182
+  sha256: 47a4fdfead5b85a2e4490b8424ea749818a41416a3178da2f6000dab72abf3ab
 
 build:
   noarch: python
