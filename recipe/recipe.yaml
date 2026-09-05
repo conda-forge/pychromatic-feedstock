@@ -1,0 +1,48 @@
+schema_version: 1
+
+context:
+  name: pychromatic
+  version: "0.6.1"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/pychromatic-${{ version }}.tar.gz
+  sha256: 47a4fdfead5b85a2e4490b8424ea749818a41416a3178da2f6000dab72abf3ab
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pytest-runner
+    - pip
+    - setuptools
+  run:
+    - cycler
+    - numpy
+    - python >=${{ python_min }}
+    - matplotlib-base
+    - rich
+
+tests:
+  - python:
+      imports:
+        - pychromatic
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  summary: a pretty color selector for python
+  license: GPL-3.0-only
+  license_file: LICENSE
+  homepage: https://github.com/srmnitc/pychromatic
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
